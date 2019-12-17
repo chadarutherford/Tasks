@@ -22,6 +22,7 @@ class TaskDetailViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var notesTextView: UITextView!
+    @IBOutlet weak var prioritySegmentedControl: UISegmentedControl!
     
     // --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
     // MARK: - View Controller Life Cycle
@@ -42,16 +43,27 @@ class TaskDetailViewController: UIViewController {
         guard let task = task, self.isViewLoaded else { return }
         nameTextField.text = task.name
         notesTextView.text = task.notes
+        let priority: TaskPriority
+        if let taskPriority = task.priority {
+            priority = TaskPriority(rawValue: taskPriority)!
+        } else {
+            priority = .normal
+        }
+        prioritySegmentedControl.selectedSegmentIndex = TaskPriority.allPriorities.firstIndex(of: priority) ?? 1
     }
     
     private func saveTask() {
         guard let name = nameTextField.text, !name.isEmpty else { return }
         let notes = notesTextView.text
+        let priorityIndex = prioritySegmentedControl.selectedSegmentIndex
+        let priority = TaskPriority.allPriorities[priorityIndex]
+        
         if let task = task {
             task.name = name
             task.notes = notes
+            task.priority = priority.rawValue
         } else {
-            let _ = Task(name: name, notes: notes)
+            let _ = Task(name: name, notes: notes, priority: priority)
         }
         
         do {
