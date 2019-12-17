@@ -107,13 +107,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nLw-Hb-dmg"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="wXB-1N-LIl">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ZGm-FK-AtU">
-                            <connections>
-                                <action selector="saveButtonTapped:" destination="pd5-Tk-Md1" id="0LJ-0d-v38"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Title" id="wXB-1N-LIl"/>
                     <connections>
                         <outlet property="nameTextField" destination="j3S-Em-TVX" id="jcs-Fq-4y8"/>
                         <outlet property="notesTextView" destination="fPB-He-YRO" id="keV-YK-mEu"/>
